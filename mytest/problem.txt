@@ -1,0 +1,31 @@
+# 记录所遇到的问题
+
+2020-11-7
+# 模块webtest
+1、test = POTest()运行后启动两次页面；
+    原因：AutoWeb初始化时打开一次，AutoWeb.start_wbroser()又打开一次：
+    修改：self.drive = webdriver.Chrome() --> self.drive = None
+2、test = POTest() 启动的网站页面未最大化;
+    原因：AutoWeb.start_wbroser()中调用最大化方法时写错：
+    修改：self.maximize --> self.maximize()
+3、程序运行后，未调用AutoWeb.quit()函数，但浏览器自动退出，未报错
+    原因：POTest.__init__()写错
+    修改：将web = AutoWeb() --> self.web = AutoWeb()
+4、执行POTest().long_in()提示未找到元素；
+    原因：AutoWeb().__locator_element(self, method='xpath', locator='None', content='None')未传入参数
+    修改：重写__locator_element(self, locator='None')函数
+5、  login()函数中代码 boolean = self.web.click('//div[@class="fl nologin"]/a[1]') 总进入异常界面，提示元素未找到或者点击失败
+    原因：问题4修改引入bug;导致AutoWeb还有两个同名函数：__locator_element(self, locator='None')、
+    __locator_element(self, method='xpath', locator='None', content='None')；AutoWeb.clicke()函数中代码
+    lement = self.__locator_element(locator)执行后获取的居然是第二个，神奇的python,和Java不一样。
+    修改：__locator_element(self, method='xpath', locator='None', content='None') -->
+    __locator_element_by_method(self, method='xpath', locator='None', content='None')
+
+6、重新总结问题4、5的原因：
+    模块AutoWeb.click中调用的方法为 element = self.__locator_element(locator)；未重写时，调用
+    __locator_element(self, method='xpath', locator='None', content='None')函数时参数locator的值传给了method
+    修改：
+        （1）__locator_element(self, method='xpath', locator='None', content='None') ——>
+            __locator_element(self, locator='None', method='xpath') 或者element = self.__locator_element(locator=locator)
+        （2）content参数多余，删除
+    就没有必要重写了

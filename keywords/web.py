@@ -11,6 +11,7 @@
 import time
 import traceback
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 
 
 class AutoWeb:
@@ -23,7 +24,8 @@ class AutoWeb:
     def __init__(self):
         self.drive = None
         self.element = None
-
+        # ie浏览器支持自动化时坑很多，需要特别处理，这里记录当前获取到的浏览器
+        self.browser = 'chrome'
     def start_browser(self, browser='chrome'):
         """
         启动浏览器：支持chrome、firefox、ie（IE兼容性不好，坑很多）
@@ -89,6 +91,7 @@ class AutoWeb:
         :param content: 输入文本内容
         :return: 是否输入成功
         """
+        print('input=%s' % locator)
         try:
             element = self.__locator_element(locator=locator)
             element.send_keys(str(content))
@@ -105,15 +108,19 @@ class AutoWeb:
         :return: 是否点击成功
         """
         try:
-            element = self.__locator_element(locator=locator)
-            element.click()
-            return True
+            # ie调用.click()没有作用，使用js点击
+            if self.browser == "ie":
+                return self.__js_click(locator)
+            else:
+                element = self.__locator_element(locator=locator)
+                element.click()
+                return True
         except Exception:
             traceback.format_exc()
             print('元素未找到或者点击失败')
             return False
 
-    def js_click(self, locator):
+    def __js_click(self, locator):
         """
         找到元素，并点击
         :param locator: 定位器
@@ -125,6 +132,7 @@ class AutoWeb:
             return True
         except:
             print('元素未找到或者点击失败')
+            traceback.format_exc()
             return False
 
     def switch_window(self, index='0'):
@@ -283,3 +291,35 @@ class AutoWeb:
         except Exception:
             traceback.format_exc()
             return False
+
+    def moveto_element_js(self, high='1000'):
+        """通过js增量滚动，防止页面分页加载,默认向下滚动1000像素
+        :param high: 向下滚动多少像素，默认1000像素
+        :return: 成功
+        """
+        self.run_js('window.scrollBy(0, %d)' % high)
+        return True
+
+    def hovering(self, locator='None'):
+        """
+        找到元素，将鼠标悬停在上面，用一些特定场景:如，鼠标移动到元素上，会出现下拉框
+        :param locator: 定位表达式
+        :return: 成功或者失败
+        """
+        try:
+            element = self.__locator_element(locator)
+            # ie浏览器使用js滚动到所以查找的元素位置
+            if self.browser == 'ie':
+                x = element.location.get('x')
+                y = element.location.get('y')
+                self.run_js('window.scrollTo(%d,%d)' % (x, y))
+            else:
+                action = ActionChains(self.drive)
+                action.move_to_element(element).perform()
+            return True
+        except:
+            traceback.format_exc()
+            return False
+
+
+

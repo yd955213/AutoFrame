@@ -1,3 +1,9 @@
 selenium
+requests
+opencv-python
+pyautogui
 pytest
-pyyaml
+pytest-rerunfailures
+PYYAML
+allure-pytest
+Appium-Python-Client

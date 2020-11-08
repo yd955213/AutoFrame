@@ -8,6 +8,7 @@
 @Version: 1.0
 @ToDo    : web自动化测试
 """
+from comm.verify import Verify
 from keywords.web import AutoWeb
 
 
@@ -29,17 +30,20 @@ class POTest:
 
     def long_in_ok(self):
         # 点击登录按钮
-        boolean = self.web.click('//div[@class="fl nologin"]/a[1]')
+        self.web.click('//div[@class="fl nologin"]/a[1]')
         # 等待页面刷新
         self.web.sleep(1)
         # 输入用户名
         self.web.input('//input[@id="username"]', '13800138006')
         # 输入密码
         self.web.input('//input[@id="password"]', '123456')
+        # 识别验证码
+        self.web.verify_recognition(locator='//imgs[@id="verify_code_img')
         # 输入验证码
-        self.web.input('//input[@id="verify_code"]', '123456')
+        print(self.web.verify_code)
+        self.web.input('//input[@id="verify_code"]', self.web.verify_code)
         # 点击登录
-        self.web.click('//a[@name="sbtbutton"]')
+        boolean = self.web.click('//a[@name="sbtbutton"]')
         if not boolean:
             self.web.quit()
         else:
@@ -77,9 +81,9 @@ class POTest:
 
         self.web.sleep(1)
         # 支付方式先选择财付通在选择支付宝
-        self.web.click('//img[@src="/plugins/payment/tenpay/logo.jpg"]')
+        self.web.click('//imgs[@src="/plugins/payment/tenpay/logo.jpg"]')
         self.web.sleep(1)
-        self.web.click('//img[@src="/plugins/payment/alipay/logo.jpg"]')
+        self.web.click('//imgs[@src="/plugins/payment/alipay/logo.jpg"]')
 
         # 确认支付方式
         self.web.click('//a[contains(text(), "确认支付方式")]')
@@ -132,7 +136,7 @@ class POTest:
         """
         self.__find_woods()
         # 点击图片，跳转商品购买页面
-        self.web.click('//a[contains(text(),"'+self.want_buy_goods+'")]/../../div[1]/a/img')
+        self.web.click('//a[contains(text(),"'+self.want_buy_goods+'")]/../../div[1]/a/imgs')
         # 数量栏输入3阁商品，点击+2次，点击-1次
         self.web.input('//*[@id="number"]', 3)
         for i in range(3):
@@ -167,7 +171,8 @@ class POTest:
         # 输入邮箱
         self.web.input('//input[@name="username"]', '664720125@qq.com')
         # 输入图像验证码
-        self.web.input('//input[@name="verify_code"]', '1')
+        self.web.verify_recognition('//imgs[@id="reflsh_code2"]')
+        self.web.input('//input[@name="verify_code"]', self.web.verify_code)
         # 输入邮箱验证码
         self.web.input('//input[@name="code"]', '1')
         # 输入设置密码
@@ -177,6 +182,10 @@ class POTest:
         # 输入推荐人手机
         self.web.input('//input[@name="invite"]', '12345678976')
 
+    def screen_shor(self):
+        self.web.visit_url('http://www.testingedu.com.cn:8000/home/User/login.html')
+        self.web.screenshot('//imgs[@id="verify_code_img"]')
+
     def logout(self):
         # 点击安全退出
         self.web.click('//div[@class="fl islogin hide"]/a[2]')
@@ -185,8 +194,10 @@ class POTest:
 if __name__ == '__main__':
     test = POTest()
     test.long_in_ok()
-    test.set_want_buy_goods()
-    # test.set_want_buy_goods("Samsung/三星 Galaxy S9 SM-G9600/DS 全网通 4G手机")
-
+    # test.set_want_buy_goods()
+    test.set_want_buy_goods("Samsung/三星 Galaxy S9 SM-G9600/DS 全网通 4G手机")
+    #
     test.buy_model_1()
     test.buy_model_2()
+    test.screen_shor()
+

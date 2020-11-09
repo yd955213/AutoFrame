@@ -8,6 +8,7 @@
 @Version: 1.0
 @ToDo    : 封装web自动化关键字
 """
+import os
 import time
 import traceback
 from selenium import webdriver
@@ -344,7 +345,7 @@ class AutoWeb:
         """
         try:
             element_img = self.__locator_element(locator)
-            element_img.screenshot(save_img_path)
+            element_img.screenshot(filename=save_img_path)
             return True
         except:
             print(traceback.format_exc())
@@ -457,3 +458,23 @@ class AutoWeb:
 
         # 滑块拖动时，一般y位移不变，为0
         slide_1.slide_by_pyautogui(x_slide, y_slide, x_offset, 0, screen_ratio=self.screen_ratio)
+
+    def upload_picture(self, locator, path='../data/imgs/upload.png'):
+        """
+        实现文件上传
+        :param locator: 定位表达式
+        :param path: 上传文件的路径:绝对路径
+        :return: 是否成功
+        """
+        try:
+            path = os.path.abspath(path)
+            if os.path.isfile(path):
+                element = self.__locator_element(locator)
+                element.sendkeys(path)
+                return True
+            else:
+                print('文件不存在，路径：%s' % path)
+                return False
+        except:
+            print(traceback.format_exc())
+            return False

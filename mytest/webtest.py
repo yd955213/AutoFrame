@@ -8,6 +8,8 @@
 @Version: 1.0
 @ToDo    : web自动化测试
 """
+import os
+
 from comm.verify import Verify
 from keywords.web import AutoWeb
 
@@ -38,7 +40,7 @@ class POTest:
         # 输入密码
         self.web.input('//input[@id="password"]', '123456')
         # 识别验证码
-        self.web.verify_recognition(locator='//imgs[@id="verify_code_img')
+        self.web.verify_recognition(locator='//img[@id="verify_code_img"]')
         # 输入验证码
         print(self.web.verify_code)
         self.web.input('//input[@id="verify_code"]', self.web.verify_code)
@@ -171,7 +173,7 @@ class POTest:
         # 输入邮箱
         self.web.input('//input[@name="username"]', '664720125@qq.com')
         # 输入图像验证码
-        self.web.verify_recognition('//imgs[@id="reflsh_code2"]')
+        self.web.verify_recognition('//img[@id="verify_code_img"]')
         self.web.input('//input[@name="verify_code"]', self.web.verify_code)
         # 输入邮箱验证码
         self.web.input('//input[@name="code"]', '1')
@@ -182,22 +184,24 @@ class POTest:
         # 输入推荐人手机
         self.web.input('//input[@name="invite"]', '12345678976')
 
-    def screen_shor(self):
-        self.web.visit_url('http://www.testingedu.com.cn:8000/home/User/login.html')
-        self.web.screenshot('//imgs[@id="verify_code_img"]')
+    # def screen_shor(self):
+    #     self.web.visit_url('http://www.testingedu.com.cn:8000/home/User/login.html')
+    #     self.web.screenshot('//img[@id="verify_code_img"]')
 
     def logout(self):
         # 点击安全退出
         self.web.click('//div[@class="fl islogin hide"]/a[2]')
 
+    def quit(self):
+        self.web.quit()
+
 
 if __name__ == '__main__':
     test = POTest()
     test.long_in_ok()
-    # test.set_want_buy_goods()
+    test.set_want_buy_goods()
     test.set_want_buy_goods("Samsung/三星 Galaxy S9 SM-G9600/DS 全网通 4G手机")
     #
     test.buy_model_1()
     test.buy_model_2()
-    test.screen_shor()
-
+    # test.screen_shor()

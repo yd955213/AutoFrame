@@ -56,7 +56,7 @@ class Slide:
         # 返回最佳匹配的x坐标
         return value[2]
 
-    def slide_img(self, src='', host=None, filepath="../lib/imgs/t.png"):
+    def slide_img(self, src='', host=None, filepath="../data/imgs/t.png"):
         """
         下载验证码图片
         :param src: 图片
@@ -85,7 +85,7 @@ class Slide:
             f.write(img)
         return filepath
 
-    def base64_to_img(self, base64_str, filepath="../lib/imgs/t.png"):
+    def base64_to_img(self, base64_str, filepath="../data/imgs/t.png"):
         """
         base64图片转二进制存储
         :param base64_str: base64字符串
@@ -122,8 +122,8 @@ class Slide:
         """
         self.base_param = {
             'zoom': 1,
-            'target': '../lib/imgs/target.png',
-            'template': '../lib/imgs/template.png',
+            'target': '../data/imgs/slide_block.png',
+            'template': '../data/imgs/slide_background.png',
             'host': '',
             'offset-x': 0,
             'template-zoom': 1,
@@ -257,21 +257,22 @@ class Slide:
         '''
         screen_ratio = float(screen_ratio)
         # 模拟非直线滑动
-        x_temp = random.randint(5, 10)
+        x_temp = random.randint(5, 15)
         x = (x + x_offset) * screen_ratio + x_temp
-        y = (y + y_offset) * screen_ratio + random.randint(5, 10)
+        y = (y + y_offset) * screen_ratio + x_temp
         pyautogui.moveTo(x, y, duration=0.38)
-        print(x, y)
+        # print(x, y)
         # 往回滑
         x_temp_1 = random.randint(-9, -5)
         x_temp += x_temp_1
         x += x_temp_1
-        y += random.randint(-9, -5)
+        y += x_temp_1
         pyautogui.moveTo(x, y, duration=0.2)
-        print(x , y)
+        # print(x, y)
         # 第3次滑动到位置附近
         x += x_temp + random.randint(-1, 1)
+        y += x_temp + random.randint(-1, 1)
         pyautogui.moveTo(x, y, duration=0.1)
 
-        print(x, y)
+        # print(x, y)
         pyautogui.mouseUp()  # 松开鼠标

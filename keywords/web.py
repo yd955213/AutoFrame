@@ -57,18 +57,17 @@ class AutoWeb:
             # 默认打开chrome浏览器，其自动化测试兼容好
             self.drive = webdriver.Chrome()
 
-        self.maximize()
+        self.__maximize()
         self.drive.implicitly_wait(10)
         return True
 
-    def maximize(self):
+    def __maximize(self):
         """
         最大化浏览器
         :return:
         """
         try:
             self.drive.maximize_window()
-            self.run_js("document.documentElement.webkitRequestFullScreen();")
         except:
             print(traceback.format_exc())
             print('最大化浏览器失败')
@@ -115,7 +114,7 @@ class AutoWeb:
             print('元素未找到或者输入失败')
             return False
 
-    def click(self, locator):
+    def click(self, locator='None'):
         """
         找到元素，并点击
         :param locator: 定位器
@@ -129,12 +128,13 @@ class AutoWeb:
                 element = self.__locator_element(locator=locator)
                 element.click()
                 return True
+
         except Exception:
             print(traceback.format_exc())
             print('元素未找到或者点击失败')
             return False
 
-    def __js_click(self, locator):
+    def __js_click(self, locator='None'):
         """
         找到元素，并点击
         :param locator: 定位器
@@ -387,7 +387,17 @@ class AutoWeb:
             print(traceback.format_exc())
             return None
 
-    def slide_url(self, slide_block_locator="None", slide_background_locator='None'):
+    def slide(self, slide_block_locator="None", slide_background_locator='None'):
+            try:
+                src = self.__get_element_src(slide_block_locator).get_attribute('src')
+                if src.startswith('data:'):
+                    self.__slide_base64(slide_block_locator, slide_background_locator)
+                else:
+                    self.__slide_url(slide_block_locator, slide_background_locator)
+            except:
+                pass
+
+    def __slide_url(self, slide_block_locator="None", slide_background_locator='None'):
         """
         一键滑动:使用cv2找出图像中最佳匹配位置，拖动滚动条实现滚动
         :param slide_block_locator: 滑块元素定位表达式
@@ -414,7 +424,7 @@ class AutoWeb:
         action.move_by_offset(x, 0).perform()
         self.sleep('1')
 
-    def slide_base64(self, slide_block_locator="None", slide_background_locator='None'):
+    def __slide_base64(self, slide_block_locator="None", slide_background_locator='None'):
         """
 
         :param slide_block_locator:
@@ -430,10 +440,10 @@ class AutoWeb:
         # self.__get_element_src运行后获取对应元素
         # 获取滑块在屏幕显示的页面中的位置
         location_slide_block = self.element.location
-        print(location_slide_block)
+        # print(location_slide_block)
         # 获取滑块的矩形长宽
         size_slide_block = self.element.size
-        print(size_slide_block)
+        # print(size_slide_block)
 
         # 保存滑块背景图片
         slide_background_path = slide_1.slide_img(src=self.__get_element_src(slide_background_locator),
@@ -441,20 +451,20 @@ class AutoWeb:
 
         x_offset, y_offset = slide_1.find_pictrue(target=slide_block_path, template=slide_background_path)
         # 背景图和页面显示的背景图有缩放 注意：self.width 这里时滑块背景的宽度
-        print(self.width)
+        # print(self.width)
         x_offset = int(x_offset * self.width / slide_1.background_width)
-        print(x_offset)
+        # print(x_offset)
         # 获取浏览器页面上方的高度
         self.run_js('return window.outerHeight - window.innerHeight;')
         browser_header = self.js_data
-        print('browser_header:%s' % browser_header)
+        # print('browser_header:%s' % browser_header)
         # 计数模块的中心位置
         x_slide = int(location_slide_block['x']) + size_slide_block['width'] // 2
         y_slide = (int(location_slide_block['y']) + int(browser_header)) + size_slide_block['height'] // 2
         # 计数模块中心位置时，x_offset相当于移动了size_slide_block['width'] // 2个长度，这里减去
         # x_offset -= size_slide_block['width'] // 2
         # y_offset -= size_slide_block['height'] // 2
-        print(x_slide, y_slide)
+        # print(x_slide, y_slide)
 
         # 滑块拖动时，一般y位移不变，为0
         slide_1.slide_by_pyautogui(x_slide, y_slide, x_offset, 0, screen_ratio=self.screen_ratio)

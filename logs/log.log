@@ -1,0 +1,8 @@
+2020-11-10 14:08:13,613 - INFO - INFO
+2020-11-10 14:08:13,613 - WARNING - WARNING
+2020-11-10 14:08:13,613 - ERROR - ERROR
+2020-11-10 14:08:13,613 - ERROR - invalid literal for int() with base 10: 'A'
+Traceback (most recent call last):
+  File "E:/pythonWorkPlace/autoFrame1/comm/logger.py", line 30, in <module>
+    int('A')
+ValueError: invalid literal for int() with base 10: 'A'

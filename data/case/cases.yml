@@ -1,0 +1,33 @@
+# 电商项目用例
+loginPage :
+  -
+    title : 登录成功
+    description : 输入正确的用户和密码登录
+    cases :
+      -
+        name : 打开登录页
+        method : visit_url
+        url : http://testingedu.com.cn:8000/index.php/Home/user/login.html
+
+      -
+        name : 输入用户名
+        method : input
+        locator : //*[@id="username"]
+        value : 13800138006
+
+      -
+        name : 输入密码
+        method : input
+        locator : //*[@id="password"]
+        value : 123456
+
+      -
+        name : 输入验证码
+        method : input
+        locator : //*[@id="verify_code"]
+        value : 111111
+
+      -
+        name : 点击登录
+        method : click
+        locator : //*[@id="loginform"]/div/div[6]/a

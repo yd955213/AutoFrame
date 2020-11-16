@@ -14,6 +14,7 @@ import traceback
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 
+from comm.logger import logger
 from comm.slide import Slide
 from comm.verify import Verify
 
@@ -38,6 +39,8 @@ class AutoWeb:
         # 下载照片的宽或者高
         self.img_width = 'None'
         self.img_height = 'None'
+        # 关联的字典
+        self.relations = {}
 
     def start_browser(self, browser='chrome'):
         """
@@ -69,8 +72,8 @@ class AutoWeb:
         try:
             self.drive.maximize_window()
         except:
-            print(traceback.format_exc())
-            print('最大化浏览器失败')
+            logger.exception(traceback.format_exc())
+            logger.exception('最大化浏览器失败')
 
     # def set_window_size(self, x, y, width, height):
     #     """
@@ -93,9 +96,11 @@ class AutoWeb:
         """
         try:
             self.drive.get(url)
+            return True
         except:
-            print(traceback.format_exc())
-            print('访问页面失败')
+            logger.exception(traceback.format_exc())
+            logger.exception('访问页面失败')
+            return False
 
     def input(self, locator='None', content='None'):
         """
@@ -110,8 +115,8 @@ class AutoWeb:
             element.send_keys(str(content))
             return True
         except:
-            print(traceback.format_exc())
-            print('元素未找到或者输入失败')
+            logger.exception(traceback.format_exc())
+            logger.exception('元素未找到或者输入失败')
             return False
 
     def click(self, locator='None'):
@@ -130,8 +135,8 @@ class AutoWeb:
                 return True
 
         except Exception:
-            print(traceback.format_exc())
-            print('元素未找到或者点击失败')
+            logger.exception(traceback.format_exc())
+            logger.exception('元素未找到或者点击失败')
             return False
 
     def __js_click(self, locator='None'):
@@ -145,8 +150,8 @@ class AutoWeb:
             self.drive.execute_script("$(arguments[0]).click()", element)
             return True
         except:
-            print('元素未找到或者点击失败')
-            print(traceback.format_exc())
+            logger.exception('元素未找到或者点击失败')
+            logger.exception(traceback.format_exc())
             return False
 
     def switch_window(self, index='0'):
@@ -164,8 +169,8 @@ class AutoWeb:
             self.drive.switch_to.window(handle[index])
             return True
         except:
-            print(traceback.format_exc())
-            print('窗口切换失败，需切换的窗口序号%s' % index)
+            logger.exception(traceback.format_exc())
+            logger.exception('窗口切换失败，需切换的窗口序号%s' % index)
             return False
 
     def into_iframe(self, locator='None'):
@@ -178,9 +183,10 @@ class AutoWeb:
             element = self.__locator_element(locator=locator)
             # self.drive.switch_to_frame(element)   # 已过时
             self.drive.switch_to.frame(element)
+            return True
         except:
-            print(traceback.format_exc())
-            print('进入iframe失败')
+            logger.exception(traceback.format_exc())
+            logger.exception('进入iframe失败')
             return False
 
     def out_iframe(self):
@@ -203,8 +209,8 @@ class AutoWeb:
             self.js_data = self.drive.execute_script(js)
             return True
         except:
-            print(traceback.format_exc())
-            print('js语言执行失败')
+            logger.exception(traceback.format_exc())
+            logger.exception('js语言执行失败')
             return False
 
     def assert_equal(self, actual_result, expected_result):
@@ -228,10 +234,12 @@ class AutoWeb:
         try:
             times = int(times)
             time.sleep(times)
+            return True
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             time.sleep(1)
-            print('固定等待输入格式不对，程序自动默认等待1s')
+            logger.exception('固定等待输入格式不对，程序自动默认等待1s')
+            return False
 
     def close_window(self):
         """
@@ -252,7 +260,7 @@ class AutoWeb:
             self.drive.quit()
             return True
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return False
 
     # def __locator_element(self, locator='None'):
@@ -304,7 +312,7 @@ class AutoWeb:
 
             return self.element
         except Exception:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return False
 
     def moveto_element_js(self, high='1000'):
@@ -333,7 +341,7 @@ class AutoWeb:
                 action.move_to_element(element).perform()
             return True
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return False
 
     def screenshot(self, locator='None', save_img_path='../data/imgs/verify_img.png'):
@@ -348,7 +356,7 @@ class AutoWeb:
             element_img.screenshot(filename=save_img_path)
             return True
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return False
 
     def verify_recognition(self, locator='None', img_path='../data/imgs/verify_img.png', code_type='1902'):
@@ -366,7 +374,7 @@ class AutoWeb:
             self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
             return self.verify_code
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return 'None'
 
     def __get_element_src(self, locator='None'):
@@ -384,18 +392,20 @@ class AutoWeb:
             self.height = element.size['height']
             return element_src
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return None
 
     def slide(self, slide_block_locator="None", slide_background_locator='None'):
             try:
                 src = self.__get_element_src(slide_block_locator).get_attribute('src')
                 if src.startswith('data:'):
-                    self.__slide_base64(slide_block_locator, slide_background_locator)
+                    pass
+                    # self.__slide_base64(slide_block_locator, slide_background_locator)
                 else:
                     self.__slide_url(slide_block_locator, slide_background_locator)
+                return True
             except:
-                pass
+                return False
 
     def __slide_url(self, slide_block_locator="None", slide_background_locator='None'):
         """
@@ -424,7 +434,7 @@ class AutoWeb:
         action.move_by_offset(x, 0).perform()
         self.sleep('1')
 
-    def __slide_base64(self, slide_block_locator="None", slide_background_locator='None'):
+    def slide_base64(self, slide_block_locator="None", slide_background_locator='None'):
         """
 
         :param slide_block_locator:
@@ -483,8 +493,34 @@ class AutoWeb:
                 element.sendkeys(path)
                 return True
             else:
-                print('文件不存在，路径：%s' % path)
+                logger.exception('文件不存在，路径：%s' % path)
                 return False
         except:
-            print(traceback.format_exc())
+            logger.exception(traceback.format_exc())
             return False
+
+    def gettext(self, locator='None', parameter_name='None'):
+        """
+        获取文本，保存参数
+        :param locator: 文本元素定位器
+        :param parameter_name: 需要保存的参数名字
+        :return:
+        """
+        ele = self.__find_ele(locator)
+        self.relations[parameter_name] = ele.text
+        return True
+
+    def __get_relations(self, s):
+        """
+        获取关联后的字符串
+        约定，如果要使用关联的变量，形式为{paramname}
+        :param s: 需要关联的字符串
+        :return: 返回关联后的字符串
+        """
+        if s is None or s == '':
+            return ''
+        else:
+            s = str(s)
+            for key in self.relations.keys():
+                s = s.replace('{' + key + '}', self.relations[key])
+            return s

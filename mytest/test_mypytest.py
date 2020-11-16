@@ -9,7 +9,6 @@
 @ToDo    : 
 """
 import os
-
 import pytest
 
 
@@ -91,11 +90,8 @@ class TestMyTest:
         print('pass5')
 
 
-if __name__ == '__main__':
-    # 使用allur 需要用
-    pytest.main(["-s", "test_mypytest.py", "--alluredir", "./temp"])
-    # 执行命令行，生成allure测试报告
-    os.system('allure generate ./temp -o ./report --clean')
-
-
-
+# if __name__ == '__main__':
+    # # 使用allur 需要用
+    # pytest.main(["-s", "test_mypytest.py", "--alluredir", "./temp"])
+    # # 执行命令行，生成allure测试报告
+    # os.system('allure generate ./temp -o ./report --clean')

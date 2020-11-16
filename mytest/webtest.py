@@ -195,13 +195,26 @@ class POTest:
     def quit(self):
         self.web.quit()
 
+    def bye(self):
+        self.web.visit_url("http://www.testingedu.com.cn:8000/index.php/Home/Goods/search.html")
+        self.web.sleep(3)
+        self.web.input('//*[@id="q"]', '电脑')
+        self.web.click('//*[@id="searchForm"]/button')
+        self.web.click('/html/body/div[4]/div/div[2]/div[2]/ul/li[2]/div/div[5]/div[2]/a')
+        self.web.click('//*[@id="layui-layer1"]/span/a')
+        self.web.hovering('//*[@id="hd-my-cart"]/a/div/span')
+        self.web.click('//a[contains(text(), "购物车结算 ")]')
+        self.web.click('/html/body/div[4]/div/div/div/div[2]/div[2]/div[1]/a')
+        self.web.sleep(2)
+        self.web.click('/html/body/div[14]/div/button')
+
 
 if __name__ == '__main__':
     test = POTest()
     test.long_in_ok()
-    test.set_want_buy_goods()
+    # test.set_want_buy_goods()
     test.set_want_buy_goods("Samsung/三星 Galaxy S9 SM-G9600/DS 全网通 4G手机")
     #
     test.buy_model_1()
-    test.buy_model_2()
+    # test.buy_model_2()
     # test.screen_shor()

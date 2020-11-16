@@ -10,13 +10,15 @@
 """
 import yaml
 
+from global_path import get_global_path
+
 
 class ReadCasesYaml:
     """
     读取用例
     """
-    def read(self, path="../data/case/cases.yml"):
-        with open(path, encoding='utf8') as f:
+    def read(self, path="data/case/cases.yml"):
+        with open(get_global_path(path), encoding='utf8') as f:
             return yaml.safe_load(f)
 
 

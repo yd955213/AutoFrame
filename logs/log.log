@@ -1,8 +1,905 @@
-2020-11-10 14:08:13,613 - INFO - INFO
-2020-11-10 14:08:13,613 - WARNING - WARNING
-2020-11-10 14:08:13,613 - ERROR - ERROR
-2020-11-10 14:08:13,613 - ERROR - invalid literal for int() with base 10: 'A'
+2020-11-11 11:34:53,702 - INFO - INFO
+2020-11-11 11:34:53,703 - WARNING - WARNING
+2020-11-11 11:34:53,703 - ERROR - ERROR
+2020-11-11 11:34:53,703 - ERROR - invalid literal for int() with base 10: 'A'
 Traceback (most recent call last):
-  File "E:/pythonWorkPlace/autoFrame1/comm/logger.py", line 30, in <module>
+  File "E:/pythonWorkPlace/autoFrame3/AutoFrame/comm/logger.py", line 42, in <module>
     int('A')
 ValueError: invalid literal for int() with base 10: 'A'
+2020-11-11 15:26:07,310 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+2020-11-11 15:26:26,873 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//iframe[@name="layui-layer-iframe1"]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//iframe[@name="layui-layer-iframe1"]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:26:26,909 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 185, in into_iframe
+    self.drive.switch_to.frame(element)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\switch_to.py", line 89, in frame
+    self._driver.execute(Command.SWITCH_TO_FRAME, {'id': frame_reference})
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidArgumentException: Message: invalid argument: invalid 'id'
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 185, in into_iframe
+    self.drive.switch_to.frame(element)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\switch_to.py", line 89, in frame
+    self._driver.execute(Command.SWITCH_TO_FRAME, {'id': frame_reference})
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidArgumentException: Message: invalid argument: invalid 'id'
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:26:26,910 - ERROR - 进入iframe失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 185, in into_iframe
+    self.drive.switch_to.frame(element)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\switch_to.py", line 89, in frame
+    self._driver.execute(Command.SWITCH_TO_FRAME, {'id': frame_reference})
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidArgumentException: Message: invalid argument: invalid 'id'
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:26:37,006 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(), "去购物车结算")]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(), "去购物车结算")]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:26:37,029 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:26:37,029 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:26:48,048 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),"去结算")]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),"去结算")]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:26:48,079 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 341, in hovering
+    action.move_to_element(element).perform()
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\common\action_chains.py", line 273, in move_to_element
+    self.w3c_actions.pointer_action.move_to(to_element)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\common\actions\pointer_actions.py", line 42, in move_to
+    raise AttributeError("move_to requires a WebElement")
+AttributeError: move_to requires a WebElement
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 341, in hovering
+    action.move_to_element(element).perform()
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\common\action_chains.py", line 273, in move_to_element
+    self.w3c_actions.pointer_action.move_to(to_element)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\common\actions\pointer_actions.py", line 42, in move_to
+    raise AttributeError("move_to requires a WebElement")
+AttributeError: move_to requires a WebElement
+2020-11-11 15:26:58,138 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),"去结算")]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(),"去结算")]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:26:58,139 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:26:58,139 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:09,191 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),"更多地址")]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(text(),"更多地址")]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:27:09,191 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:09,192 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:19,201 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class="consignee-list p"]/ul/li[2]/div[2]/span[4]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class="consignee-list p"]/ul/li[2]/div[2]/span[4]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:27:19,202 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:19,202 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:29,248 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class="checkout-submit"]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class="checkout-submit"]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:27:29,249 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:29,249 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:40,299 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/tenpay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/tenpay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:27:40,299 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:40,299 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:51,305 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/alipay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/alipay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:27:51,305 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:27:51,305 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:28:01,314 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(), "确认支付方式")]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(text(), "确认支付方式")]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:28:01,353 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:28:01,353 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:29:34,599 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+2020-11-11 15:29:55,907 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:29:55,908 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:30:06,996 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/tenpay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/tenpay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:30:06,997 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:30:06,997 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:30:18,011 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/alipay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//imgs[@src="/plugins/payment/alipay/logo.jpg"]"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:30:18,012 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:30:18,012 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:44:42,474 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+2020-11-11 15:44:53,768 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="searchForm"]/button"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="searchForm"]/button"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:44:53,769 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:44:53,769 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:45:03,798 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[4]/div/div[2]/div[2]/ul/li[2]/div/div[5]/div[2]/a"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[4]/div/div[2]/div[2]/ul/li[2]/div/div[5]/div[2]/a"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:45:03,798 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:45:03,798 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:45:13,851 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="layui-layer1"]/span/a"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="layui-layer1"]/span/a"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:45:13,852 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:45:13,852 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:45:31,902 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[14]/div/button"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[14]/div/button"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:45:31,902 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:45:31,902 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:47:22,646 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 374, in verify_recognition
+    self.verify_code = verify1.post_picture(code_type=code_type, im=img_path)
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\comm\verify.py", line 51, in post_picture
+    im = open(im, 'rb').read()
+FileNotFoundError: [Errno 2] No such file or directory: '../data/imgs/verify_img.png'
+2020-11-11 15:47:36,472 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="searchForm"]/button"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="searchForm"]/button"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:47:36,473 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:47:36,473 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:47:46,526 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[4]/div/div[2]/div[2]/ul/li[2]/div/div[5]/div[2]/a"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div[4]/div/div[2]/div[2]/ul/li[2]/div/div[5]/div[2]/a"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:47:46,527 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:47:46,527 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:47:56,580 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="layui-layer1"]/span/a"}
+  (Session info: chrome=86.0.4240.111)
+
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 287, in __locator_element
+    self.element = self.drive.find_element_by_xpath(locator)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 976, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "E:\python3.8\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="layui-layer1"]/span/a"}
+  (Session info: chrome=86.0.4240.111)
+
+2020-11-11 15:47:56,580 - ERROR - Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'
+2020-11-11 15:47:56,581 - ERROR - 元素未找到或者点击失败
+Traceback (most recent call last):
+  File "E:\pythonWorkPlace\autoFrame3\AutoFrame\keywords\web.py", line 134, in click
+    element.click()
+AttributeError: 'bool' object has no attribute 'click'

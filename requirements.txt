@@ -7,3 +7,8 @@ pytest-rerunfailures
 PYYAML
 allure-pytest
 Appium-Python-Client
+openpyxl
+xlrd
+xlwt
+xlutils
+suds-jurko

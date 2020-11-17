@@ -19,15 +19,15 @@ from openpyxl.styles import PatternFill, Font
 from xlutils.copy import copy
 from global_path import get_abspath
 
+# """
+# xlrd\xlwt、openpyxl的背景颜色顺序需一一对应 7之后的有空再写
+# 背景色 0 = Black, 1 = White, 2 = Red, 3 = Green, 4 = Blue, 5 = Yellow, 6 = Magenta, 7 = Cyan, 16 = Maroon,
+# 17 = Dark Green, 18 = Dark Blue, 19 = Dark Yellow , almost brown), 20 = Dark Magenta, 21 = Teal,
+# 22 = Light Gray, 23 = Dark Gray
+# """
+
 
 class MyColor(Enum):
-    """
-    xlrd\xlwt、openpyxl的背景颜色顺序需一一对应
-    背景色 0 = Black, 1 = White, 2 = Red, 3 = Green, 4 = Blue, 5 = Yellow, 6 = Magenta, 7 = Cyan, 16 = Maroon,
-    17 = Dark Green, 18 = Dark Blue, 19 = Dark Yellow , almost brown), 20 = Dark Magenta, 21 = Teal,
-    22 = Light Gray, 23 = Dark Gray
-    """
-
     BlACK = '000000'
     WHITE = 'FFFFFF'
     RED = 'FF0000'
@@ -139,13 +139,12 @@ class Excel:
 
     def __read_line_xls(self):
         lines = []
-        while self.readingLine < self.rows:
+        if self.readingLine < self.rows:
             row = self.sheet.row_values(self.readingLine)
             self.readingLine += 1
-            row_str = []
+            # row_str = []
             for value in row:
-                row_str.append(str(value))
-            lines.append(row_str)
+                lines.append(str(value))
         return lines
 
     def __read_line_xlsx(self):
@@ -161,8 +160,8 @@ class Excel:
         return lines
 
     def __write_xls(self, row, column, value, color=MyColor.WHITE):
-        row -= 1
-        column -= 1
+        row = int(row) - 1
+        column = int(column) - 1
         # 获取单元格格式
         # cell_style = self.sheet.cell(row, column).xf_idx
         # self.sheet.write(row=row, column=column, value=value)
@@ -194,6 +193,7 @@ class Excel:
             '''
             pattern = xlwt.Pattern()
             pattern.pattern = xlwt.Pattern.SOLID_PATTERN
+            # 背景色是传入数字，这里传入MyColor 转list的下标
             pattern.pattern_fore_colour = list(MyColor).index(color)
             style.pattern = pattern
             # 写入值
@@ -232,8 +232,6 @@ class Excel:
 
 
 if __name__ == '__main__':
-    print(MyColor.BlACK.value)
-    print(list(MyColor).index(MyColor.BlACK))
     excel = Excel()
     # excel.open_excel(r'C:\Users\yangdang\Desktop\123.xls')
     excel.open_excel(r'C:\Users\yangdang\Desktop\123.xlsx')

@@ -35,6 +35,5 @@ def test_add(li):
 
 
 if __name__ == '__main__':
-
     pytest.main(["-s", "mypytest.py", "--alluredir", "./temp"])
-    os.system('allure generate ./temp -o ./report --clean')
+    # os.system('allure generate ./temp -o ./report --clean')

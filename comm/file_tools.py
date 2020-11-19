@@ -9,9 +9,7 @@
 @Description   :  一些对于文件的操作
 """
 import json
-
-# from comm.logger import logger
-from global_path import get_abspath
+from global_abspath import get_abspath
 
 
 class FileTools:
@@ -40,6 +38,10 @@ class FileTools:
                                 # logger.warn('配置文件格式错误，请检查：' + str(s))
                                 # logger.exception(e)
         return config
+
+
+
+
 
 
 if __name__ == '__main__':

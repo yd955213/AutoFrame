@@ -64,7 +64,41 @@ def is_Null(value):
     """
     判断数据类型是否为空
     """
-    if value is None or value.__len__ == 0:
+    try:
+        if value is None or len(value) == 0:
+            return True
+        else:
+            return False
+    except:
+        print('is_Null（type_judgment.py） 不支持数字')
         return True
-    else:
+
+
+# 这里有个bug 如果li=['', None],使用is_None_in_list(*li)时 传入的为元祖（‘’, None）,然而此时None类型为<class 'str'>，导致判断错误
+def is_None_in_list(li):
+    sum_1 = 0
+    for i in li:
+        i = str(i)
+        if not is_Null(i):
+            sum_1 += 1
+    if sum_1 > 0:
         return False
+    else:
+        return True
+
+
+if __name__ == '__main__':
+    args = ('auth', '', '')
+    args[0] = 1
+    print(args)
+    # print(is_None_in_list(args))
+    # # args = ''
+    # # print(is_Null(args))
+    # # args = None
+    # # print(is_Null(args))
+    # # args = 'None'
+    # # print(is_Null(args))
+    # # args = '1'
+    # # print(is_Null(args))
+
+    print(is_Null(''))

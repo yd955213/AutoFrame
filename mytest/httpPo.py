@@ -41,6 +41,7 @@ from keywords.key_word_http import KeyWordHttp
 # http.post('inter/HTTP/logout', '->userid')
 #
 # http.assert_equal('status', 200)
+from run_main import config
 
 
 def getfunc(obj, method):
@@ -57,21 +58,25 @@ def getfunc(obj, method):
 
 def run_case(keywords, cell_list):
     # 第一列，第二列不执行
-    if len(cell_list[0]) > 0 or len(cell_list[1]) > 0:
+    if len(cell_list[int(config.get('teem'))]) > 0 or len(cell_list[int(config.get('caseName'))]) > 0:
         return
     print('cell_list =', cell_list)
     try:
-        func = getfunc(keywords, cell_list[3])
-        if func[1] == 0:
-            func[0]()
-        elif func[1] == 1:
-            func[0](cell_list[4])
-        elif func[1] == 2:
-            func[0](cell_list[4], cell_list[5])
-        elif func[1] == 2:
-            func[0](cell_list[4], cell_list[5], cell_list[6])
-        else:
-            print('不支持')
+        func = getattr(keywords, cell_list[int(config.get('keyWord'))])
+        li = cell_list[int(config.get('requestParamStart')): int(config.get('requestParamEnd')) + 1]
+        print(li)
+        func(*li)
+        # func = getfunc(keywords, cell_list[3])
+        # if func[1] == 0:
+        #     func[0]()
+        # elif func[1] == 1:
+        #     func[0](cell_list[4])
+        # elif func[1] == 2:
+        #     func[0](cell_list[4], cell_list[5])
+        # elif func[1] == 2:
+        #     func[0](cell_list[4], cell_list[5], cell_list[6])
+        # else:
+        #     print('不支持')
     except:
         print(traceback.format_exc())
 

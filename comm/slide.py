@@ -19,7 +19,7 @@ import requests
 
 from selenium.webdriver import ActionChains
 
-from global_path import get_global_path
+from global_abspath import get_abspath
 
 
 class Slide:
@@ -45,11 +45,11 @@ class Slide:
         print(target)
         print(template)
         # 打开背景图
-        target_rgb = cv2.imread(get_global_path(target))
+        target_rgb = cv2.imread(get_abspath(target))
         # 灰度处理
         target_gray = cv2.cvtColor(target_rgb, cv2.COLOR_BGR2GRAY)
         # 打开模板图
-        template_rgb = cv2.imread(get_global_path(template), 0)
+        template_rgb = cv2.imread(get_abspath(template), 0)
         self.background_width = template_rgb.shape[1]
         # 获取
         res = cv2.matchTemplate(target_gray, template_rgb, cv2.TM_CCOEFF_NORMED)
@@ -72,7 +72,7 @@ class Slide:
         # 处理base64图片
         if src.startswith('data:'):
             src = src[src.find('base64,') + 7:]
-            return self.base64_to_img(src, filepath=get_global_path(filepath))
+            return self.base64_to_img(src, filepath=get_abspath(filepath))
 
         # 处理相对路径url地址图片
         if not src.startswith('http'):
@@ -96,7 +96,7 @@ class Slide:
         """
         try:
             imgdata = base64.b64decode(base64_str)
-            file = open(get_global_path(filepath), 'wb')
+            file = open(get_abspath(filepath), 'wb')
             file.write(imgdata)
             file.close()
             return filepath

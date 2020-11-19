@@ -1,7 +1,7 @@
 # !/uer/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File   :   global_path.py
+@File   :   global_abspath.py
 @Time   :   2020-11-12 9:32
 @Author :   yang_dang
 @Contact    :   664720125@qq.com
@@ -23,3 +23,5 @@ def get_abspath(path):
             return path
         else:
             return None
+
+

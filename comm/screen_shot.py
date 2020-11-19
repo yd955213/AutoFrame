@@ -10,7 +10,7 @@
 """
 import cv2
 
-from global_path import get_abspath
+from global_abspath import get_abspath
 
 
 def get_error_img(obj, zoom=1.25):

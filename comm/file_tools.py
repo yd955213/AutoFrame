@@ -23,20 +23,21 @@ class FileTools:
         config = {}
         with open(file=self.file_path, mode=mode, encoding=encoding) as f1:
             data_lines = f1.readlines()
+            print(data_lines)
             for st in data_lines:
                 st = st.replace('\n', '').replace(' ', '')
                 st = st.encode('utf-8').decode('utf-8-sig')
                 if not st.startswith("#"):
                     if st.find("#") > 0:
-                        st = st[0:st.find("#")]
-                        if st.find('='):
-                            try:
-                                index = st.find('=')
-                                config[st[0: index]] = st[index + 1:len(st)]
-                            except:
-                                pass
-                                # logger.warn('配置文件格式错误，请检查：' + str(s))
-                                # logger.exception(e)
+                        st = st[0: st.find("#")]
+                    if st.find('='):
+                        try:
+                            index = st.find('=')
+                            config[st[0: index]] = st[index + 1:len(st)]
+                        except:
+                            pass
+                            # logger.warn('配置文件格式错误，请检查：' + str(s))
+                            # logger.exception(e)
         return config
 
 

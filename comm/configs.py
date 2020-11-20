@@ -8,8 +8,12 @@
 @Version    :   1.0
 @Description   :   存放全局参数
 """
+import time
+
 from comm.file_tools import FileTools
 from global_abspath import get_abspath
 
 config = FileTools(get_abspath('./config/config.properties')).read_config_text()
-print('config = ', config)
+
+time_start = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+time_end = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

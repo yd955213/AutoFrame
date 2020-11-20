@@ -1,0 +1,132 @@
+# !/uer/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@File   :   my_email.py
+@Time   :   2020-11-20 10:50
+@Author :   yang_dang
+@Contact    :   664720125@qq.com
+@Version    :   1.0
+@Description   :   负责邮件发送
+"""
+import os
+from email.header import Header
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from smtplib import SMTP_SSL
+
+from comm.configs import config
+from comm.result import Result
+from comm.type_judgment import is_Null
+from global_abspath import get_abspath
+
+
+class MyEmail:
+    charset = 'utf-8'
+    
+    def __init__(self):
+        self.email_form = config.get('mailFrom')
+        self.password = config.get('passWord')
+        self.email_to = config.get('mailTo')
+        self.smtp_server = 'smtp.' + self.email_form[self.email_form.find('@') + 1: len(self.email_form)]
+        self.email_title = config.get('mailTitle')
+        self.email_module = config.get('mailModule') if is_Null(config.get('mailModule')) else 'module1.html'
+        # 获取html用例模板
+        with open(file=get_abspath('data/email_module/') + '/' + self.email_module, mode='r', encoding=self.charset) as f1:
+            self.email_content = f1.read()
+        self.file_path = get_abspath('data/case/result_HTTP接口用例.xls')
+        # 附件
+        self.email_enclosure = [self.file_path, ]
+        self.res = Result()
+        
+    def send(self):
+        server = SMTP_SSL(self.smtp_server)
+        server.ehlo(self.smtp_server)
+        server.login(self.email_form, self.password)
+        message = self.__get_message()
+        server.sendmail(self.email_form, self.email_to.split(','), message.as_string())
+        server.quit()
+
+    def __get_message(self):
+        # 支持附件的邮件
+        msg = MIMEMultipart(_charset=self.charset)
+        # 添加自定义昵称
+        h = Header("123", self.charset)
+        h.append('<' + self.email_form + '>', self.charset)
+        msg['From'] = h
+        msg['From'] = self.email_form
+        msg['To'] = self.email_to
+        msg['Subject'] = self.email_title
+
+        # 邮件正文内容
+        msg.attach(MIMEText(self.__get_email_content_html(), 'html', self.charset))
+        # 添加附件
+        for i in range(len(self.email_enclosure)):
+            att1 = MIMEText(open(self.email_enclosure[i], 'rb').read(), 'base64', _charset=self.charset)
+            att1['Content-Type'] = 'application/octet-stream'
+            att1.add_header('Content-Disposition', 'attachment', filename=('gbk', '',
+                                                                           os.path.basename(self.email_enclosure[i])))
+            msg.attach(att1)
+        return msg
+
+    def __get_email_content_html(self):
+        """
+        生成可发送的html文件
+        """
+        text = self.__get_summary()
+        trs = self.__get_details()
+        text = text.replace('mailbody', trs)
+        self.email_content
+        print(text)
+        return text
+
+    def __get_summary(self):
+        """
+        获取邮件汇总信息
+        :return:
+        """
+        summary = self.res.get_res(self.file_path)
+        text = self.email_content
+        # 替换汇总信息
+        for key in summary.keys():
+            if summary[key] == "PASS":
+                text = text.replace(
+                    '<font style="font-weight: bold;font-size: 14px;color: #00d800;">status</font>',
+                    '<font style="font-weight: bold;font-size: 14px;color: #00d800;">PASS</font>')
+                text = text.replace('scolor','#00d800;')
+            elif summary[key] == "FAIL":
+                text = text.replace(
+                    '<font style="font-weight: bold;font-size: 14px;color: #00d800;">status</font>',
+                    '<font style="font-weight: bold;font-size: 14px;color: red;">FAIL</font>')
+                text = text.replace('scolor', 'red;')
+            else:
+                text = text.replace(key, summary[key])
+
+        return text
+
+    def __get_details(self):
+        """
+        获取详解结果列表
+        :return:
+        """
+        groups = self.res.get_groups(self.file_path)
+
+        # 获取分组显示
+        tr = '<tr><td width="100" height="28" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">分组信息</td><td width="80" height="28" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">用例总数</td><td width="80" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">通过数</td><td width="80" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc; color:scolor;">状态</td></tr>'
+        trs = ""
+        for i in range(len(groups)):
+            tmp = tr.replace('分组信息', str(groups[i][0]))
+            tmp = tmp.replace('用例总数', str(groups[i][1]))
+            tmp = tmp.replace('通过数', str(groups[i][2]))
+            if str(groups[i][3])=="PASS":
+                tmp = tmp.replace('scolor', '#00d800')
+            else:
+                tmp = tmp.replace('scolor', 'red')
+            tmp = tmp.replace('状态', str(groups[i][3]))
+            trs = trs + tmp
+
+        return trs
+
+
+if __name__ == '__main__':
+    email = MyEmail()
+    email.send()

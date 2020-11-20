@@ -8,9 +8,11 @@
 @Version    :   1.0
 @Description   :   
 """
+import time
 import traceback
 
-from comm.configs import config
+from comm import configs
+from comm.configs import config, time_start, time_end
 from comm.read_and_write_excel import Excel, MyColor
 from keywords.key_word_http import KeyWordHttp
 
@@ -23,6 +25,8 @@ class InterfaceCase:
         self.http = KeyWordHttp(self.excel)
 
     def run(self):
+
+        configs.time_start = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.excel.open_excel(self.file_path)
         sheet_name = self.excel.get_sheets()
         for sheet in sheet_name:
@@ -34,6 +38,7 @@ class InterfaceCase:
                 self.http.excel_write_row = i
                 self.__run_case(cell_list)
         self.excel.save()
+        configs.time_end = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
     def __run_case(self, cell_list):
         # 第一列，第二列不执行

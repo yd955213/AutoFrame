@@ -19,6 +19,7 @@ from openpyxl.styles import PatternFill, Font
 from xlutils.copy import copy
 from global_abspath import get_abspath
 
+
 # """
 # xlrd\xlwt、openpyxl的背景颜色顺序需一一对应 7之后的有空再写
 # 背景色 0 = Black, 1 = White, 2 = Red, 3 = Green, 4 = Blue, 5 = Yellow, 6 = Magenta, 7 = Cyan, 16 = Maroon,
@@ -114,6 +115,25 @@ class Excel:
         else:
             return self.__read_line_xlsx()
 
+    def read_lines(self):
+        lines = []
+        if self.excel_type == self.excel_type_xls:
+            for row in range(0, self.rows):
+                lines.append(self.__read_line_xls())
+        else:
+            # 遍历sheet里面所有的行
+            for row in self.sheet.rows:
+                # 存一行的单元格
+                line = []
+                # 取出所有的单元格
+                for cell in row:
+                    if cell.value is None:
+                        line.append('')
+                    else:
+                        line.append(cell.value)
+                lines.append(line)
+        return lines
+
     def save(self):
         self.workbook_write.save(self.result_file)
 
@@ -140,30 +160,35 @@ class Excel:
         self.sheet = self.workbook_write[name]
         self.sheet_write = self.sheet
         self.rows = self.sheet.max_row
-        self.readingLine = 0
+        self.readingLine += 1
         return
 
     def __read_line_xls(self):
-        lines = []
+        row1 = None
         if self.readingLine < self.rows:
             row = self.sheet.row_values(self.readingLine)
             self.readingLine += 1
-            # row_str = []
-            for value in row:
-                lines.append(str(value))
-        return lines
+
+            # 辅助遍历行里面的列
+            i = 0
+            row1 = row
+            # 把读取的数据都变为字符串
+            for strs in row:
+                row1[i] = str(strs)
+                i = i + 1
+        return row1
 
     def __read_line_xlsx(self):
-        lines = []
-        for row in self.sheet.rows:
-            value = []
-            for cell in row:
-                if cell.value is None:
+        value = []
+        if self.readingLine > 0:
+            for i in range(1, self.sheet.max_column):
+                if self.sheet.cell(self.readingLine, i).value is None:
                     value.append('')
                 else:
-                    value.append(cell.value)
-            lines.append(value)
-        return lines
+                    value.append(self.sheet.cell(self.readingLine, i).value)
+        else:
+            value.append('Row or column values must be at least 1')
+        return value
 
     def __write_xls(self, row, column, value, color=None):
         # 获取单元格格式
@@ -213,7 +238,7 @@ class Excel:
                 # DASHED 虚线
                 # NO_LINE： 官方代码中NO_LINE所表示的值为0，没有边框
                 # THIN： 官方代码中THIN所表示的值为1，边框为实线
-                border = xlwt.Borders()         # 创建边框
+                border = xlwt.Borders()  # 创建边框
                 border.left = xlwt.Borders.THIN
                 border.right = xlwt.Borders.THIN
                 border.top = xlwt.Borders.THIN
@@ -267,15 +292,21 @@ class Excel:
 
 if __name__ == '__main__':
     excel = Excel()
-    excel.open_excel(r'C:\Users\yangdang\Desktop\123.xls')
-    # excel.open_excel(r'C:\Users\yangdang\Desktop\123.xlsx')
+    excel.open_excel(r'../data/case/result_HTTP接口用例.xls')
     sheet_name = excel.get_sheets()
     # print(sheet_name)
-    li = excel.read_line()
-    # print('li', li)
     excel.set_sheet(sheet_name[0])
-    excel.write(3, 4, '解决1123', MyColor.BLUE)
-    excel.write(1, 1, 'yd', MyColor.BlACK)
-    excel.write(7, 7, '解决123123', MyColor.RED)
-    excel.write(0, 0, '解决', MyColor.GREEN)
-    excel.save()
+    excel.readingLine =2
+    # row = excel.rows
+    # print(row)
+    # # 遍历sheet里面所有用例
+    # for i in range(0,row):
+    lines = excel.read_lines()
+    print('li=', lines)
+    # excel.set_sheet(sheet_name[0])
+    # excel.write(3, 4, '解决1123', MyColor.BLUE)
+    # excel.write(1, 1, 'yd1', MyColor.WHITE)
+    # excel.write(2, 2, 'yd2', MyColor.BlACK)
+    # excel.write(7, 7, '解决123123', MyColor.RED)
+    # excel.write(0, 0, '解决', MyColor.GREEN)
+    # excel.save()

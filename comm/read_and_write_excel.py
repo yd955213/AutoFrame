@@ -48,7 +48,7 @@ class Excel:
     """
     excel_type_xls = 'xls'
     excel_type_xlsx = 'xlsx'
-
+    
     def __init__(self):
         # 读取需要复制的excel的工作空间
         self.workbook = None
@@ -65,56 +65,57 @@ class Excel:
         # excel 类型：xls，xlsx
         self.excel_type = None
         # excel保存路径
+        self.file_path = None
         self.result_file = None
-
+    
     def open_excel(self, file_name):
-        file_path = get_abspath(file_name)
-        if file_path is None:
+        self.file_path = get_abspath(file_name)
+        if self.file_path is None:
             return
         else:
-            self.result_file = os.path.dirname(file_path) + os.sep + 'result_' + os.path.basename(file_name)
-
-        if file_path.endswith(self.excel_type_xls):
+            self.result_file = os.path.dirname(self.file_path) + os.sep + 'result_' + os.path.basename(file_name)
+        
+        if self.file_path.endswith(self.excel_type_xls):
             xlrd.Book.encoding = 'utf8'
             # formatting_info带格式的复制
-            self.workbook = xlrd.open_workbook(filename=file_path, formatting_info=True)
-            # 拷贝，也在内存里面
-            shutil.copy(file_path, self.result_file)
+            self.workbook = xlrd.open_workbook(filename=self.file_path, formatting_info=True)
+            # # 拷贝，也在内存里面
+            # shutil.copy(self.file_path, self.result_file)
             # 打开备份文件进行读写操作
-            self.workbook_write = copy(self.workbook)
+            # self.workbook_write = copy(self.workbook)
             self.sheet = self.workbook.sheet_by_index(0)
             self.sheet_write = self.sheet
             self.rows = self.sheet.nrows
             self.excel_type = self.excel_type_xls
         else:
             openpyxl.Workbook.encoding = 'utf8'
-            self.workbook = openpyxl.load_workbook(filename=file_path)
-            shutil.copy(file_path, self.result_file)
-            self.workbook_write = openpyxl.load_workbook(filename=self.result_file)
+            self.workbook = openpyxl.load_workbook(filename=self.file_path)
+            # shutil.copy(self.file_path, self.result_file)
+            # self.workbook_write = openpyxl.load_workbook(filename=self.result_file)
             self.sheet = self.workbook[self.workbook.sheetnames[0]]
             self.rows = self.sheet.max_row
             self.excel_type = self.excel_type_xlsx
-
+        
         self.readingLine = 0
-
+    
     def get_sheets(self):
         if self.excel_type == self.excel_type_xls:
             return self.__get_sheets_xls()
         else:
             return self.__get_sheets_xlsx()
-
+    
     def set_sheet(self, name):
         if self.excel_type == self.excel_type_xls:
             self.__set_sheet_xls(name)
         else:
             self.__set_sheet_xlsx(name)
-
-    def read_line(self):
+    
+    def read_line(self, row=''):
         if self.excel_type == self.excel_type_xls:
-            return self.__read_line_xls()
+            return self.__read_line_xls(row)
         else:
-            return self.__read_line_xlsx()
-
+            return self.__read_line_xlsx(row)
+    
     def read_lines(self):
         lines = []
         if self.excel_type == self.excel_type_xls:
@@ -133,63 +134,75 @@ class Excel:
                         line.append(cell.value)
                 lines.append(line)
         return lines
-
+    
     def save(self):
         self.workbook_write.save(self.result_file)
-
+    
     def write(self, row, column, value, color=MyColor.WHITE):
+        # 拷贝，也在内存里面
+        shutil.copy(self.file_path, self.result_file)
         if self.excel_type == self.excel_type_xls:
+            self.workbook_write = copy(self.workbook)
             self.__write_xls(row, column, value, color)
         else:
+            self.workbook_write = openpyxl.load_workbook(filename=self.result_file)
             self.__write_xlsx(row, column, value, color)
-
+    
     def __get_sheets_xls(self):
         return self.workbook.sheet_names()
-
+    
     def __get_sheets_xlsx(self):
         return self.workbook.sheetnames
-
+    
     def __set_sheet_xls(self, name):
         self.sheet = self.workbook.sheet_by_name(name)
         self.sheet_write = self.workbook_write.get_sheet(name)
         self.rows = self.sheet.nrows
         self.readingLine = 0
         return
-
+    
     def __set_sheet_xlsx(self, name):
         self.sheet = self.workbook_write[name]
         self.sheet_write = self.sheet
         self.rows = self.sheet.max_row
         self.readingLine += 1
         return
-
-    def __read_line_xls(self):
+    
+    def __read_line_xls(self, row=''):
         row1 = None
-        if self.readingLine < self.rows:
-            row = self.sheet.row_values(self.readingLine)
-            self.readingLine += 1
-
-            # 辅助遍历行里面的列
-            i = 0
-            row1 = row
-            # 把读取的数据都变为字符串
-            for strs in row:
-                row1[i] = str(strs)
-                i = i + 1
+        try:
+            row = self.readingLine if row == "" else row
+            row = int(row)
+            if row >= 0 or row < self.rows:
+                row = self.sheet.row_values(row)
+                # 辅助遍历行里面的列
+                i = 0
+                row1 = row
+                # 把读取的数据都变为字符串
+                for strs in row:
+                    row1[i] = str(strs)
+                    i = i + 1
+        except:
+            print('请输入正确的行数')
         return row1
-
-    def __read_line_xlsx(self):
+    
+    def __read_line_xlsx(self, row=''):
         value = []
-        if self.readingLine > 0:
-            for i in range(1, self.sheet.max_column):
-                if self.sheet.cell(self.readingLine, i).value is None:
-                    value.append('')
-                else:
-                    value.append(self.sheet.cell(self.readingLine, i).value)
-        else:
-            value.append('Row or column values must be at least 1')
+        try:
+            row = self.readingLine if row == "" else row
+            row = int(row)
+            if row > 0 or  row <= self.rows:
+                for i in range(1, self.sheet.max_column):
+                    if self.sheet.cell(row, i).value is None:
+                        value.append('')
+                    else:
+                        value.append(self.sheet.cell(row, i).value)
+            else:
+                value.append('Row or column values must be at least 1')
+        except:
+            print('请输入正确的行数')
         return value
-
+    
     def __write_xls(self, row, column, value, color=None):
         # 获取单元格格式
         # cell_style = self.sheet.cell(row, column).xf_idx
@@ -202,11 +215,11 @@ class Excel:
             row = sheet._Worksheet__rows.get(r)
             if not row:
                 return None
-
+            
             # 获取单元格
             cell = row._Row__cells.get(c)
             return cell
-
+        
         row = int(row)
         column = int(column)
         if row >= 0 and column >= 0:
@@ -214,7 +227,7 @@ class Excel:
             cell = _getCell(self.sheet_write, row, column)
             # 格式，把单元格原来的格式保存下来
             idx = cell.xf_idx
-
+            
             if color is None:
                 self.sheet_write.write(row, column, value)
                 if cell:
@@ -226,7 +239,7 @@ class Excel:
             else:
                 # 初始化样式
                 style = xlwt.XFStyle()
-
+                
                 font1 = xlwt.Font()  # 创建字体
                 font1.name = 'Arial'
                 font1.bold = True  # 黑体
@@ -258,7 +271,7 @@ class Excel:
                 self.sheet_write.write(r=row, c=column, label=value, style=style)
         else:
             print('无效单元格')
-
+    
     def __write_xlsx(self, row, column, value, color=MyColor.WHITE):
         """
         
@@ -268,7 +281,7 @@ class Excel:
         :param color: MyColor.xxxx 不需要.value
         :return:
         """
-
+        
         row = int(row) + 1
         column = int(column) + 1
         if row > 0 and column > 0:
@@ -291,22 +304,18 @@ class Excel:
 
 
 if __name__ == '__main__':
+    # 创建对象
     excel = Excel()
+    # 打开excel文件
     excel.open_excel(r'../data/case/result_HTTP接口用例.xls')
-    sheet_name = excel.get_sheets()
-    # print(sheet_name)
-    excel.set_sheet(sheet_name[0])
-    excel.readingLine =2
-    # row = excel.rows
-    # print(row)
-    # # 遍历sheet里面所有用例
-    # for i in range(0,row):
-    lines = excel.read_lines()
-    print('li=', lines)
-    # excel.set_sheet(sheet_name[0])
-    # excel.write(3, 4, '解决1123', MyColor.BLUE)
-    # excel.write(1, 1, 'yd1', MyColor.WHITE)
-    # excel.write(2, 2, 'yd2', MyColor.BlACK)
-    # excel.write(7, 7, '解决123123', MyColor.RED)
-    # excel.write(0, 0, '解决', MyColor.GREEN)
-    # excel.save()
+    # 获取所以sheet页面
+    sheet_names = excel.get_sheets()
+    # 设置当前想要读取或者写入的sheet页
+    excel.set_sheet(sheet_names[0])
+    # 读取当前sheet页的数据
+    excel.read_lines()
+    # 读取某一行的数据
+    excel.readingLine = 2
+    excel.read_line()
+    # 读取某一行的数据
+    excel.read_line(3)

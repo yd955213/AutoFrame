@@ -9,10 +9,12 @@
 @Description   :   存放全局参数
 """
 import time
-
 from comm.file_tools import FileTools
+from comm.logger import Logger
 from global_abspath import get_abspath
 
+
+logger = Logger('config/logger.yaml').logger
 config = FileTools(get_abspath('./config/config.properties')).read_config_text()
 
 time_start = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
